@@ -6,7 +6,7 @@ env:
     - ROSWELL_BRANCH=release
     - ROSWELL_INSTALL_DIR=$HOME/.roswell
     - LISP=sbcl-bin
-    - GITHUB_OWNER=snmsts
+    - GITHUB_OWNER=roswell
     - GITHUB_REPO=roswell-bin
 os:
   - osx
