@@ -1,6 +1,6 @@
 #!/bin/sh
 cd $(dirname $0)
 cd ..
-rm *.tgz
+rm -f *.tgz
 rm -rf roswell
 
