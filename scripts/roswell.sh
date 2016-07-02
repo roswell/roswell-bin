@@ -1,5 +1,5 @@
 #!/bin/sh
-
+set -e
 git clone https://github.com/roswell/roswell.git --depth 1 --branch $1
 cd roswell
 ./bootstrap
