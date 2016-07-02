@@ -1,0 +1,12 @@
+all:
+
+install:
+	mkdir -p /usr/local/etc/roswell
+	cp etc/roswell/* /usr/local/etc/roswell
+	cp bin/ros /usr/local/bin/
+
+uninstall:
+	rm /usr/local/bin/ros
+	rm -rf /usr/local/etc/roswell
+
+.PHONY: all install uninstall

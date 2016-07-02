@@ -1,0 +1,32 @@
+language: c
+sudo: false
+env:
+  global:
+    - PATH=~/.roswell/bin:$PATH
+    - ROSWELL_BRANCH=release
+    - ROSWELL_INSTALL_DIR=$HOME/.roswell
+    - LISP=sbcl-bin
+    - GITHUB_OWNER=snmsts
+    - GITHUB_REPO=roswell-bin
+os:
+  - osx
+  - linux
+
+install:
+  - curl -L https://raw.githubusercontent.com/roswell/roswell/$ROSWELL_BRANCH/scripts/install-for-ci.sh | sh
+  - ros asdf install
+
+cache:
+  directories:
+    - $HOME/lisp
+
+before_script:
+  - ros version
+  - ros config
+  - scripts/dispatch.sh
+
+script:
+  - echo "no test"
+
+after_success:
+  - if [ x$TRAVIS_TAG != x ]; then scripts/upload.sh;fi
