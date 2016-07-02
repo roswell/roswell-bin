@@ -14,4 +14,3 @@ cp scripts/Makefile.roswell archive/Makefile
 rm -rf roswell
 mv archive roswell
 tar czf roswell-bin-$1-`uname`.tgz roswell
-./scripts/upload.sh roswell-bin-$1-`uname`.tgz roswell-bin-$1 $GITHUB_OWNER $GITHUB_REPO
