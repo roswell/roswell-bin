@@ -23,10 +23,9 @@ cache:
 before_script:
   - ros version
   - ros config
-  - scripts/dispatch.sh
-
+  - if [ x$TRAVIS_TAG = x ]; then scripts/dispatch.sh; fi
 script:
   - echo "no test"
 
 after_success:
-  - if [ x$TRAVIS_TAG != x ]; then scripts/upload.sh;fi
+
