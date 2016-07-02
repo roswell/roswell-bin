@@ -1,5 +1,5 @@
 language: c
-sudo: false
+sudo: required
 env:
   global:
     - PATH=~/.roswell/bin:$PATH
@@ -16,15 +16,13 @@ install:
   - curl -L https://raw.githubusercontent.com/roswell/roswell/$ROSWELL_BRANCH/scripts/install-for-ci.sh | sh
   - ros asdf install
 
-cache:
-  directories:
-    - $HOME/lisp
-
 before_script:
   - ros version
   - ros config
-  - if [ x$TRAVIS_TAG =  x ]; then scripts/dispatch.sh  ; fi
-  - if [ x$TRAVIS_TAG != x ]; then scripts/dispatch.sh upload; fi
+  - scripts/dispatch.sh
+  - if [ x$TRAVIS_TAG != x ]; then scripts/dispatch.sh upload $TRAVIS_TAG; fi
+  - if [ x$UPLOAD_TAG != x ]; then scripts/dispatch.sh upload $UPLOAD_TAG; fi
+
 script:
   - echo "no test"
 
