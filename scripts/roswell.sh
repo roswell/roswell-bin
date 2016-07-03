@@ -7,7 +7,8 @@ cd roswell
 make
 cd ..
 mkdir -p archive/bin
-cp roswell/src/ros archive/bin/ros
+cp -f roswell/src/ros archive/bin/ros|true
+cp -f roswell/src/ros.exe archive/bin/ros.exe|true
 mkdir -p archive/etc/roswell
 cp roswell/lisp/*.lisp roswell/lisp/*.ros archive/etc/roswell
 cp scripts/Makefile.roswell archive/Makefile
