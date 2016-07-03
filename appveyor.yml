@@ -19,6 +19,6 @@ install:
 
 build_script:
   - msys%MSYS2_BITS%\usr\bin\bash -lc "mkdir /tmp;cd $APPVEYOR_BUILD_FOLDER; exec 0</dev/null; scripts/dispatch.sh"
-  - if ("%UPLOAD_TAG%" -ne "") msys%MSYS2_BITS%\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; exec 0</dev/null; scripts/dispatch.sh upload $UPLOAD_TAG"
+  - if NOT "%UPLOAD_TAG%" == "" msys%MSYS2_BITS%\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; exec 0</dev/null; scripts/dispatch.sh upload $UPLOAD_TAG"
 test_script:
   -
