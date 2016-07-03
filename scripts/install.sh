@@ -10,7 +10,12 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     curl --no-progress-bar --retry 10 -o roswell.tgz -L https://github.com/roswell/roswell-bin/releases/download/roswell-bin-v0.0.6.64/roswell-bin-v0.0.6.64-Linux.tgz
 fi
 
-tar xf roswell.tgz
+if [ x$(expr substr $(uname -s) 1 5) == xMINGW ]; then
+    bsdtar xf roswell.tgz
+else
+    tar xf roswell.tgz
+fi
+
 cd roswell/
 make install
 cd ..
