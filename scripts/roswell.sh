@@ -14,5 +14,6 @@ cp roswell/lisp/*.lisp roswell/lisp/*.ros archive/etc/roswell
 cp scripts/Makefile.roswell archive/Makefile
 rm -rf roswell
 mv archive roswell
-tar czf roswell-bin-$1-`uname`.tgz roswell
 echo roswell-bin-$1-`uname`.tgz
+echo $PATH
+tar czf roswell-bin-$1-`uname`.tgz roswell
