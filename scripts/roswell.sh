@@ -15,3 +15,4 @@ cp scripts/Makefile.roswell archive/Makefile
 rm -rf roswell
 mv archive roswell
 tar czf roswell-bin-$1-`uname`.tgz roswell
+echo roswell-bin-$1-`uname`.tgz
