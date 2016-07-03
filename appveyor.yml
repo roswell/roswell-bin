@@ -4,12 +4,12 @@ environment:
   global:
     MSYS2_BASEVER: 20150916
   matrix:
-    - MSYS2_ARCH: i686
-      MSYS2_BITS: 32
-      MSYSTEM: MINGW32
     - MSYS2_ARCH: x86_64
       MSYS2_BITS: 64
       MSYSTEM: MINGW64
+    - MSYS2_ARCH: i686
+      MSYS2_BITS: 32
+      MSYSTEM: MINGW32
 
 install:
   - ps: If (Test-Path ("msys" + $env:MSYS2_BITS)){Write-Host "Using cached msys2"}
