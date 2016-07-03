@@ -16,4 +16,5 @@ rm -rf roswell
 mv archive roswell
 echo roswell-bin-$1-`uname`.tgz
 echo $PATH
+which tar
 tar czf roswell-bin-$1-`uname`.tgz roswell
