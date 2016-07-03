@@ -7,7 +7,7 @@ install:
 	cp etc/roswell/* ${prefix}/etc/roswell
 	cp bin/ros ${prefix}/bin/ |true
 	cp bin/ros.exe ${prefix}/bin/ |true
-
+	chmod 755 ${prefix}/bin/ros| true
 uninstall:
 	rm -f ${prefix}/bin/ros|true
 	rm -f ${prefix}/bin/ros.exe|true
