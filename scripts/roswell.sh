@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 git clone https://github.com/roswell/roswell.git --depth 1 --branch $1
 cd roswell
@@ -15,8 +15,8 @@ cp scripts/Makefile.roswell archive/Makefile
 rm -rf roswell
 mv archive roswell
 echo roswell-bin-$1-`uname`.tgz
-if [ "$(expr substr $(uname -s) 1 5)" == "MINGW" ]; then
-    tar czf roswell-bin-$1-`uname`.tgz roswell
-else
+if [ x$(expr substr $(uname -s) 1 5) == xMINGW ]; then
     bsdtar czf roswell-bin-$1-`uname`.tgz roswell
+else
+    tar czf roswell-bin-$1-`uname`.tgz roswell
 fi
