@@ -13,8 +13,8 @@ os:
   - linux
 
 install:
-  - sudo bash scripts/install.sh
-  - chmod 755 /usr/local/bin/ros
+  - curl -L https://raw.githubusercontent.com/roswell/roswell/$ROSWELL_BRANCH/scripts/install-for-ci.sh | sh
+  - # sudo bash scripts/install.sh
   - ros setup
   - ros asdf install
 
