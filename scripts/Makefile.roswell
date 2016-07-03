@@ -1,12 +1,16 @@
+# -*- makefile -*-
+prefix = /usr/local
 all:
 
 install:
-	mkdir -p /usr/local/etc/roswell
-	cp etc/roswell/* /usr/local/etc/roswell
-	cp bin/ros /usr/local/bin/
+	mkdir -p ${prefix}/etc/roswell
+	cp etc/roswell/* ${prefix}/etc/roswell
+	cp bin/ros ${prefix}/bin/ |true
+	cp bin/ros.exe ${prefix}/bin/ |true
 
 uninstall:
-	rm /usr/local/bin/ros
-	rm -rf /usr/local/etc/roswell
+	rm -f ${prefix}/bin/ros|true
+	rm -f ${prefix}/bin/ros.exe|true
+	rm -rf ${prefix}/etc/roswell
 
 .PHONY: all install uninstall

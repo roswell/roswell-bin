@@ -3,7 +3,7 @@ set -e
 git clone https://github.com/roswell/roswell.git --depth 1 --branch $1
 cd roswell
 ./bootstrap
-./configure
+./configure --prefix=/usr/local
 make
 cd ..
 mkdir -p archive/bin
