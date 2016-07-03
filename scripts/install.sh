@@ -7,7 +7,7 @@ elif [ x$(expr substr $(uname -s) 1 8) == xMINGW32 ]; then
     URI=https://ci.appveyor.com/api/buildjobs/763vvgf6t7kt38h5/artifacts/roswell-bin-v0.0.6.64-MINGW32_NT-6.3-WOW.tgz
 
 elif [ "$(uname)" == "Darwin" ]; then
-    URI=https://github.com/roswell/roswell-bin/releases/download/roswell-bin-v0.0.6.64/roswell-bin-v0.0.6.64-Linux.tgz
+    URI=https://github.com/roswell/roswell-bin/releases/download/roswell-bin-v0.0.6.64/roswell-bin-v0.0.6.64-Darwin.tgz
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     URI=https://github.com/roswell/roswell-bin/releases/download/roswell-bin-v0.0.6.64/roswell-bin-v0.0.6.64-Linux.tgz
 fi
@@ -22,6 +22,7 @@ else
 fi
 
 cd roswell/
+chmod 755 roswell/bin/ros|true
 make install
 cd ..
 rm -rf roswell
