@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 if [ x$(expr substr $(uname -s) 1 8) == xMINGW64 ]; then
     curl --no-progress-bar --retry 10 -o roswell.tgz -L https://ci.appveyor.com/api/buildjobs/8jqoa9kylo7fc72l/artifacts/roswell-bin-v0.0.6.64-MINGW64_NT-6.3.tgz

@@ -13,7 +13,7 @@ os:
   - linux
 
 install:
-  - sudo sh scripts/install.sh
+  - sudo bash scripts/install.sh
   - ros setup
   - ros asdf install
 
