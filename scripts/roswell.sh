@@ -18,5 +18,5 @@ echo roswell-bin-$1-`uname`.tgz
 if [ x$(expr substr $(uname -s) 1 5) == xMINGW ]; then
     bsdtar czf roswell-bin-$1-`uname`.tgz roswell
 else
-    tar czf roswell-bin-$1-`uname`.tgz roswell
+    tar pczf roswell-bin-$1-`uname`.tgz roswell
 fi

@@ -24,6 +24,7 @@ fi
 
 cd roswell/
 chmod 755 roswell/bin/ros|true
+mkdir /usr/local/bin |true
 make install
 cd ..
 rm -rf roswell
