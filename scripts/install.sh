@@ -27,3 +27,5 @@ chmod 755 roswell/bin/ros|true
 make install
 cd ..
 rm -rf roswell
+
+ros version
