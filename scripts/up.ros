@@ -38,7 +38,7 @@ exec ros -Q -- $0 "$@"
 (defun github (path tagname owner repo)
   (unless (uiop:getenv "GITHUB_OAUTH_TOKEN")
     (error "GITHUB_OAUTH_TOKEN must be set"))
-  (ensure-release-exists (second argv) :owner owner :repo repo)
+  (ensure-release-exists tagname :owner owner :repo repo)
   (asset-upload (pathname path) tagname :owner owner :repo repo))
 
 (defun main (subcmd &rest argv)
