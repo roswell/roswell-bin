@@ -13,7 +13,7 @@ exec ros -Q -- $0 "$@"
   )
 
 (defpackage :ros.script.up.3676381940
-  (:use :cl :sn.github.repos.release))
+  (:use :cl :sn.github.repos.releases))
 
 (in-package :ros.script.up.3676381940)
 
@@ -28,10 +28,10 @@ exec ros -Q -- $0 "$@"
   (let ((found (release-exist-p tagname :owner owner :repo repo)))
     (if found
         found
-        (release-create owner repo tagname))))
+        (releases-create owner repo tagname))))
 
 (defun asset-upload (path tagname &key owner repo)
-  (release-asset-upload
+  (releases-asset-upload
    owner repo
    (getf (release-exist-p tagname :owner owner :repo repo) :|id|) path))
 
