@@ -13,14 +13,14 @@ exec ros -Q -- $0 "$@"
   )
 
 (defpackage :ros.script.up.3676381940
-  (:use :cl :sn.github.release))
+  (:use :cl :sn.github.repos.release))
 
 (in-package :ros.script.up.3676381940)
 
 (defun release-exist-p (tagname &key owner repo)
   (ignore-errors
     (find tagname
-          (sn.github.release::releases-list owner repo)
+          (releases-list owner repo)
           :key (lambda (x) (getf x :|tag_name|))
           :test 'equal)))
 
@@ -28,25 +28,23 @@ exec ros -Q -- $0 "$@"
   (let ((found (release-exist-p tagname :owner owner :repo repo)))
     (if found
         found
-        (sn.github.release::release-create owner repo tagname))))
+        (release-create owner repo tagname))))
 
 (defun asset-upload (path tagname &key owner repo)
-  (sn.github.release::release-asset-upload
+  (release-asset-upload
    owner repo
    (getf (release-exist-p tagname :owner owner :repo repo) :|id|) path))
 
-(defun github (argv)
+(defun github (path tagname owner repo)
   (unless (uiop:getenv "GITHUB_OAUTH_TOKEN")
     (error "GITHUB_OAUTH_TOKEN must be set"))
-  (let ((owner (third argv))
-        (repo (fourth argv)))
-    (ensure-release-exists (second argv) :owner owner :repo repo)
-    (asset-upload (pathname (first argv)) (second argv) :owner owner :repo repo)))
+  (ensure-release-exists (second argv) :owner owner :repo repo)
+  (asset-upload (pathname path) tagname :owner owner :repo repo))
 
 (defun main (subcmd &rest argv)
   (declare (ignorable argv))
   (let ((subcmd (find subcmd '(github)
                       :test 'equal :key 'string-downcase)))
     (when subcmd
-      (funcall subcmd argv))))
+      (apply subcmd argv))))
 ;;; vim: set ft=lisp lisp:
