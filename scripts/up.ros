@@ -4,11 +4,6 @@
 exec ros -Q -- $0 "$@"
 |#
 (progn ;;init forms
-  (or
-   (ignore-errors
-    (load "~/lisp/sn.github/sn.github.asd"))
-   (ignore-errors
-    (load "../sn.github/sn.github.asd")))
   (ql:quickload '(:cl-ppcre :split-sequence :sn.github))
   )
 
@@ -30,16 +25,25 @@ exec ros -Q -- $0 "$@"
         found
         (releases-create owner repo tagname))))
 
-(defun asset-upload (path tagname &key owner repo)
-  (releases-asset-upload
-   owner repo
-   (getf (release-exist-p tagname :owner owner :repo repo) :|id|) path))
+(defun asset-upload (path tagname &key owner repo force)
+  (let ((release-id (getf (release-exist-p tagname :owner owner :repo repo) :|id|))
+        (name (file-namestring path)))
+    (when force
+      (let ((id (getf (find name (releases-assets-list owner repo release-id)
+                            :key (lambda (x) (getf x :|name|))
+                            :test #'equal) :|id|)))
+        (when id 
+          (releases-asset-delete owner repo id))))
+     
+    (releases-asset-upload
+     owner repo
+     release-id path)))
 
-(defun github (path tagname owner repo)
+(defun github (path tagname owner repo &optional force)
   (unless (uiop:getenv "GITHUB_OAUTH_TOKEN")
     (error "GITHUB_OAUTH_TOKEN must be set"))
   (ensure-release-exists tagname :owner owner :repo repo)
-  (asset-upload (pathname path) tagname :owner owner :repo repo))
+  (asset-upload (pathname path) tagname :owner owner :repo repo :force (when force t)))
 
 (defun main (subcmd &rest argv)
   (declare (ignorable argv))
